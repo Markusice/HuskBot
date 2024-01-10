@@ -3,14 +3,9 @@ require("dotenv").config();
 const mongoose = require("mongoose");
 const databaseToken = process.env.DATABASE_TOKEN;
 
-mongoose.connect(databaseToken).then(
-  () => {
-    console.log("[MongoDB] Connected to database!");
-  },
-  (err) => {
-    console.error(err.message);
-  },
-);
+mongoose.connect(databaseToken).catch((error) => console.log(error));
+
+mongoose.connection.on("connected", () => console.log("[MongoDB] Connected"));
 
 mongoose.connection.on("error", (err) => {
   console.error(err);
