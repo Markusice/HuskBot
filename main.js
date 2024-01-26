@@ -2,10 +2,15 @@ require("dotenv").config();
 
 const mongoose = require("mongoose");
 const databaseToken = process.env.DATABASE_TOKEN;
+const chalk = require("chalk");
 
-mongoose.connect(databaseToken).catch((error) => console.log(error));
+console.log(chalk.magenta("[Client] Starting..."));
 
-mongoose.connection.on("connected", () => console.log("[MongoDB] Connected"));
+mongoose.connect(databaseToken).catch((error) => console.error(error));
+
+mongoose.connection.on("connected", () =>
+  console.log(chalk.cyan("[MongoDB] Connected")),
+);
 
 mongoose.connection.on("error", (err) => {
   console.error(err);

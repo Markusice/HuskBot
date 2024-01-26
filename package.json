@@ -11,6 +11,7 @@
   "license": "ISC",
   "devDependencies": {
     "ascii-table": "^0.0.9",
+    "chalk": "4.1.2",
     "discord.js": "^14.14.1",
     "dotenv": "^16.3.1",
     "mongoose": "^8.0.4"
