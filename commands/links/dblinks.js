@@ -24,15 +24,15 @@ module.exports = {
             .setName("name")
             .setDescription("Name of the link")
             .setRequired(true)
-            .setMinLength(1)
+            .setMinLength(1),
         )
         .addStringOption((option) =>
           option
             .setName("url")
             .setDescription("URL of the link")
             .setRequired(true)
-            .setMinLength(1)
-        )
+            .setMinLength(1),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -42,8 +42,8 @@ module.exports = {
           option
             .setName("page")
             .setDescription("Number of the page")
-            .setMinValue(1)
-        )
+            .setMinValue(1),
+        ),
     )
     .addSubcommand((subcommand) =>
       subcommand
@@ -54,9 +54,10 @@ module.exports = {
             .setName("name")
             .setDescription("Name of the link")
             .setRequired(true)
-            .setMinLength(1)
-        )
+            .setMinLength(1),
+        ),
     ),
+
   async execute(interaction) {
     const { guildId } = interaction;
     const embed = new EmbedBuilder().setColor(0x8860d0);
@@ -79,12 +80,12 @@ module.exports = {
               url: linkUrl,
             });
             embed.setDescription(
-              "Succesfully saved `" + linkName + "` link to your guild!"
+              "Succesfully saved `" + linkName + "` link to your guild!",
             );
             await interaction.reply({ embeds: [embed], ephemeral: true });
           } else {
             embed.setDescription(
-              "`" + linkName + "` link is already saved in your guild!"
+              "`" + linkName + "` link is already saved in your guild!",
             );
             await interaction.reply({ embeds: [embed], ephemeral: true });
           }
@@ -115,7 +116,7 @@ module.exports = {
           const showLinks = (_currentPageStart, _currentPageEnd) => {
             const currentPageLinks = guildLinks.slice(
               _currentPageStart,
-              _currentPageEnd
+              _currentPageEnd,
             );
 
             return currentPageLinks.map(({ name, url }) => {
@@ -151,7 +152,7 @@ module.exports = {
 
           const embedButtons = new ActionRowBuilder().addComponents(
             previousPage,
-            nextPage
+            nextPage,
           );
 
           checkNextBtnState();
@@ -225,7 +226,7 @@ module.exports = {
 
           if (deletedCount !== 0) {
             embed.setDescription(
-              "Succesfully removed `" + linkName + "` link from your guild!"
+              "Succesfully removed `" + linkName + "` link from your guild!",
             );
           } else {
             embed.setDescription("Link not found in your guild!");
